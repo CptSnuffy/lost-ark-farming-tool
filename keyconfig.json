@@ -1,0 +1,9 @@
+{
+    "Default" : ["Q", "W", "E", "R", "A", "S", "D", "F"],
+    "CustomOne" : ["Q", "W", "E", "R", "A", "S", "D", "F"],
+    "CustomTwo" : ["Q", "W", "E", "R", "A", "S", "D", "F"],
+    "CustomThree" : ["Q", "W", "E", "R", "A", "S", "D", "F"],
+    "HOTKEY" : "-",
+    "TIMETOWAIT" : "31",
+    "SELECTEDKEY" : "R"
+}
