@@ -1,9 +1,7 @@
 {
     "Default" : ["Q", "W", "E", "R", "A", "S", "D", "F"],
-    "CustomOne" : ["Q", "W", "E", "R", "A", "S", "D", "F"],
-    "CustomTwo" : ["Q", "W", "E", "R", "A", "S", "D", "F"],
-    "CustomThree" : ["Q", "W", "E", "R", "A", "S", "D", "F"],
-    "HOTKEY" : "-",
-    "TIMETOWAIT" : "31",
-    "SELECTEDKEY" : "R"
+    "Custom One" : ["Q", "W", "E", "R", "A", "S", "D", "F"],
+    "Custom Two" : ["Q", "W", "E", "R", "A", "S", "D", "F"],
+    "Custom Three" : ["Q", "W", "E", "R", "A", "S", "D", "F"],
+    "TIMETOWAIT" : "3"
 }

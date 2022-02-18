@@ -1,11 +1,9 @@
 from ToolGUI import ToolClient
 
-
-
 def main():
-    client = ToolClient()
+    client = ToolClient().tool_menu()
     print('assigned client')
-    client.tool_menu()
+    client()
     print('client ran')
 
 if __name__ == '__main__':
