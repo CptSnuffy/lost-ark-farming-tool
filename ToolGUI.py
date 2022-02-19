@@ -1,14 +1,16 @@
 import itertools
-import profile
 import tkinter as tk
-from tkinter import RAISED, Button, Canvas, Frame, OptionMenu, StringVar, Label, Entry
-from tkinter.constants import BOTH, CENTER, LEFT, RIGHT, X
+from tkinter import Button, Canvas, Frame, OptionMenu, StringVar, Label, Entry
+from tkinter.constants import BOTH, LEFT, RIGHT, X
 import random
 from ToolLogic import FarmLogic
+import threading
 
+kill_gui_thread = True
 
 class ToolClient():
     
+
     def window_setup(self):
         
 
@@ -35,9 +37,25 @@ class ToolClient():
                 root_window.geometry('+{0}+{1}'.format(event.x_root-250, event.y_root))
 
         def start_stop():
+            global kill_gui_thread
+            #print(kill_gui_thread)
+            kill_gui_thread = not kill_gui_thread
+           # print(kill_gui_thread)
+            #print(f'{type(key_selection.get())} this is key selection')
             farm_logic = FarmLogic()
-            time_to_wait = wait_string.get()
-            farm_logic.on_press(key_selection, time_to_wait)
+            key_to_select = key_selection.get().lower().strip()
+            time_to_wait = int(wait_string.get())
+            #farm_logic.on_press(key_to_select, time_to_wait)
+            t2 = threading.Thread(target=farm_logic.press_key, args= (key_to_select,time_to_wait, kill_gui_thread))
+
+            if kill_gui_thread:
+                print('thread joined')
+                entry_box.configure(state='normal')
+                #t2.join()
+            elif kill_gui_thread is False:
+                print('logic thread started')
+                entry_box.configure(state='disabled')
+                t2.start()
 
 
         def load_keys(profile):

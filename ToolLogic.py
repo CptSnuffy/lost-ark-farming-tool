@@ -8,35 +8,35 @@ from pynput.keyboard import Controller
 #Note to self if abilities are not firing from loaded json dictionary use .lower as they are capital letters for formatting purposes
 #Add button that explains how to edit keyconfig.json for custom use
 
+kill_thread = True
+
 class FarmLogic():
     
-    kill_thread = False
-
     def load_config():
         with open('keyconfig.json') as json_file:
             data = json.load(json_file)
             return data
     
-    def press_key(key_to_press = 'R', time_to_wait = 30):
-        global kill_thread
-
-        while kill_thread is False:
-            print('thread start')
-            print(time_to_wait)
-            print(key_to_press)
-            keyboard.press(key_to_press)
-            time.sleep(time_to_wait)
+    def press_key(self, key_to_press = 'R', time_to_wait = 30, kill_thread = False):
+        kill_thread = False
+        while True:
+            print(kill_thread)
+            keyboard.press(str(key_to_press))
+            time.sleep(int(time_to_wait))
+            if kill_thread:
+                return
 
     @classmethod
-    def on_press(self, time_to_wait = 31, key_to_press = 'g'):
+    def on_press(self,  key_to_press = 'r', time_to_wait = 31):
         global kill_thread
+        kill_thread = not kill_thread
 
         #load_settings = self.load_config()
         # time_to_wait = load_settings['TIMETOWAIT']
         # key_to_press = load_settings['SELECTEDKEY']
 
         #We skip right over the while loop and immediately kill new threads provide fix
-        t1 = threading.Thread(target=self.press_key(key_to_press, time_to_wait))
+        t1 = threading.Thread(target=self.press_key(key_to_press, time_to_wait, kill_thread))
 
         try:
             if  kill_thread:
@@ -60,4 +60,6 @@ class FarmLogic():
 
 
 keyboard = Controller()
-kill_thread = True
+
+
+#FarmLogic.on_press()
