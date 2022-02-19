@@ -1,5 +1,7 @@
 from ToolGUI import ToolClient
 
+#Run this file in a directory with the other two py files to run the program
+
 def main():
     client = ToolClient().tool_menu()
     print('assigned client')
